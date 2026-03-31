@@ -2,25 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
-use Illuminate\Http\Request;
+
 
 class PostController extends Controller
 {
-    public function store(Request $request){
+    public function store(PostRequest $request){
+
+   
+
        $title = $request->title;
        $content = $request->content;
        $author = $request->author;
+       if ($img = $request->file('img')) {
+        $img = $request ->file('img') ->store('public/img');
+       }
+       
+       
 
-       $post = new Post();
+    //    $post = new Post();
 
-       $post->title = $title;
-       $post->content = $content;
-       $post->author = $author;
+    //    $post->title = $title;
+    //    $post->content = $content;
+    //    $post->author = $author;
+    //    $post->img = $img;
 
-       $post->save();
+    //    $post->save();
 
-        return redirect()->back();
+        Post::create([
+            'title' => $title,
+            'content' => $content,
+            'author' => $author,
+            'img' => $img,
+
+        ]);
+
+        return redirect()->back()->with('message', 'Post creato con successo!');
 
     }
 

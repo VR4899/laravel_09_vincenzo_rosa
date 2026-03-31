@@ -14,13 +14,7 @@
         <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
             @foreach ($posts as $post)
                 <div class="col d-flex justify-content-center">
-                    <div class="card shadow-sm border-primary" style="width: 18rem;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title text-truncate">{{ $post->title }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ $post->author }}</h6>
-                            <p class="card-text">{{ Str::limit($post->content, 100) }}</p>
-                        </div>
-                    </div>
+                   <x-card :post="$post"/>
                 </div>
             @endforeach
         </div>
