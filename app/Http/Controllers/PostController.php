@@ -16,7 +16,7 @@ class PostController extends Controller
        $content = $request->content;
        $author = $request->author;
        if ($img = $request->file('img')) {
-        $img = $request ->file('img') ->store('public/img');
+        $img = $request ->file('img') ->store('img', 'public');
        }
        
        
