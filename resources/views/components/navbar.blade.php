@@ -16,9 +16,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ route('posts') }}">Publication</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
+        
       </ul>
     </div>
   </div>

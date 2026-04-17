@@ -8,6 +8,13 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
+     public function posts(){
+        $posts = Post::all();
+
+        return view('folder.posts', ['posts'=> $posts]); 
+
+
+    }
     public function store(PostRequest $request){
 
    
@@ -15,20 +22,7 @@ class PostController extends Controller
        $title = $request->title;
        $content = $request->content;
        $author = $request->author;
-       if ($img = $request->file('img')) {
-        $img = $request ->file('img') ->store('img', 'public');
-       }
-       
-       
-
-    //    $post = new Post();
-
-    //    $post->title = $title;
-    //    $post->content = $content;
-    //    $post->author = $author;
-    //    $post->img = $img;
-
-    //    $post->save();
+       if ($img = $request->file('img')) {$img = $request->file('img')->store('img','public');}
 
         Post::create([
             'title' => $title,
@@ -42,12 +36,5 @@ class PostController extends Controller
 
     }
 
-    public function posts(){
-        $posts = Post::all();
-
-        return view('folder.posts', ['posts'=> $posts]); 
-
-
-    }
-
 }
+
